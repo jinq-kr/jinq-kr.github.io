@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>양진규 — 작업 목록</title>
+<meta name="description" content="만들어 본 것들을 한곳에 모아 둡니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDF0F2;
+    --ink: #17222E;
+    --muted: #5E6C7A;
+    --rule: #CDD5DB;
+    --hover: #E3E8EC;
+    --accent: #0F6E5C;
+    --accent-soft: #D8E7E3;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans KR", system-ui, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2.5px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- 소개 ---------- */
+
+  .intro { padding: 4.5rem 0 2.75rem; }
+
+  .intro h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+  }
+
+  .intro .lede {
+    margin: 1.1rem 0 0;
+    max-width: 46ch;
+    font-size: 1.02rem;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    margin-top: 1.6rem;
+    font-size: 0.9rem;
+  }
+
+  .contacts a {
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  .contacts a:hover { background: var(--accent-soft); }
+
+  /* ---------- 필터 ---------- */
+
+  .filter {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 0 1.25rem;
+  }
+
+  .filter .cue {
+    margin: 0 0 0.9rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .tag {
+    font: inherit;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.28rem 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.14s, color 0.14s, border-color 0.14s;
+  }
+
+  .tag:hover { background: var(--hover); color: var(--ink); }
+
+  .tag[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+
+  .tag .n { opacity: 0.55; margin-left: 0.35rem; }
+
+  /* ---------- 목록 ---------- */
+
+  .count {
+    padding: 0.5rem 0 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .list { list-style: none; margin: 0; padding: 0 0 1rem; border-top: 1px solid var(--rule); }
+
+  .item { border-bottom: 1px solid var(--rule); }
+
+  .item > a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.3rem 1.5rem;
+    padding: 1.35rem 0.7rem 1.4rem 0.4rem;
+    text-decoration: none;
+    transition: background-color 0.14s;
+  }
+
+  .item > a:hover { background: var(--hover); }
+
+  .name {
+    font-size: 1.08rem;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+  }
+
+  .pin {
+    display: inline-block;
+    margin-left: 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    vertical-align: 0.12em;
+  }
+
+  .desc {
+    margin: 0.15rem 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+    max-width: 54ch;
+  }
+
+  .meta {
+    margin: 0.6rem 0 0;
+    font-size: 0.79rem;
+    color: var(--muted);
+  }
+
+  .meta span::after { content: " · "; opacity: 0.5; }
+  .meta span:last-child::after { content: ""; }
+
+  .when {
+    font-size: 0.83rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    padding-top: 0.25rem;
+  }
+
+  .msg {
+    padding: 2.5rem 0.4rem;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .msg a { border-bottom: 1.5px solid var(--accent); text-decoration: none; }
+
+  /* ---------- 꼬리말 ---------- */
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.75rem 0 3.5rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 600px) {
+    .intro { padding: 3rem 0 2rem; }
+    .item > a { grid-template-columns: 1fr; padding: 1.2rem 0.25rem; }
+    .when { grid-row: 1; padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="intro">
+    <h1>양진규</h1>
+    <p class="lede">
+      업무 밖에서 만들어 본 것들을 여기에 모아 둡니다. 완성된 것도, 하다 만 것도 그대로 둡니다.
+    </p>
+    <div class="contacts">
+      <a href="https://github.com/jinq-kr">GitHub</a>
+      <a href="mailto:이메일주소를넣으세요">이메일</a>
+    </div>
+  </header>
+
+  <div class="filter">
+    <p class="cue">기술을 눌러 걸러 볼 수 있습니다.</p>
+    <div class="tags" id="tags"></div>
+  </div>
+
+  <p class="count" id="count"></p>
+
+  <ul class="list" id="list">
+    <li class="msg">불러오는 중…</li>
+  </ul>
+
+  <footer>목록은 GitHub에서 자동으로 가져옵니다.</footer>
+
+</div>
+
+<script>
+/* ==================================================================
+   설정
+   ================================================================== */
+const USER = "jinq-kr";
+
+/* 목록에서 빼고 싶은 레포 이름 */
+const HIDE = ["jinq-kr", "jinq-kr.github.io"];
+
+/* 특정 레포만 손보고 싶을 때. 나머지는 GitHub 정보를 그대로 씁니다. */
+const OVERRIDE = {
+  // "레포이름": { pin: true, desc: "여기 설명을 덮어씁니다." }
+};
+
+/* 태그로 쓰지 않을 topic */
+const SKIP_TAG = ["portfolio", "practice"];
+
+/* ================================================================== */
+
+let ALL = [];
+let active = null;
+
+load();
+
+async function load() {
+  const list = document.getElementById("list");
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`);
+    if (!res.ok) throw new Error(res.status);
+
+    ALL = (await res.json())
+      .filter(r => !r.fork && !HIDE.includes(r.name))
+      .filter(r => r.description || OVERRIDE[r.name]?.desc)
+      .map(r => {
+        const o = OVERRIDE[r.name] || {};
+        const tags = (r.topics || []).filter(t => !SKIP_TAG.includes(t));
+        if (r.language && !tags.some(t => t.toLowerCase() === r.language.toLowerCase())) {
+          tags.unshift(r.language);
+        }
+        return {
+          name: r.name,
+          desc: o.desc || r.description,
+          href: r.homepage || r.html_url,
+          when: ym(r.pushed_at),
+          stopped: r.archived,
+          pin: !!o.pin,
+          tags
+        };
+      })
+      .sort((a, b) => (b.pin - a.pin) || b.when.localeCompare(a.when));
+
+    if (!ALL.length) {
+      list.innerHTML = `<li class="msg">아직 표시할 항목이 없습니다.
+        레포 About에 설명을 한 줄 쓰면 여기 나타납니다.</li>`;
+      return;
+    }
+
+    renderTags();
+    renderList();
+
+  } catch (e) {
+    list.innerHTML = `<li class="msg">목록을 불러오지 못했습니다.
+      <a href="https://github.com/${USER}?tab=repositories">GitHub에서 직접 보기</a></li>`;
+  }
+}
+
+function renderTags() {
+  const count = {};
+  ALL.forEach(p => p.tags.forEach(t => { count[t] = (count[t] || 0) + 1; }));
+
+  const sorted = Object.entries(count).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+  document.getElementById("tags").innerHTML =
+    `<button class="tag" data-tag="" aria-pressed="true">전체<span class="n">${ALL.length}</span></button>` +
+    sorted.map(([t, n]) =>
+      `<button class="tag" data-tag="${esc(t)}" aria-pressed="false">${esc(t)}<span class="n">${n}</span></button>`
+    ).join("");
+
+  document.getElementById("tags").addEventListener("click", e => {
+    const btn = e.target.closest(".tag");
+    if (!btn) return;
+    active = btn.dataset.tag || null;
+    document.querySelectorAll(".tag").forEach(b =>
+      b.setAttribute("aria-pressed", String((b.dataset.tag || null) === active)));
+    renderList();
+  });
+}
+
+function renderList() {
+  const items = active ? ALL.filter(p => p.tags.includes(active)) : ALL;
+
+  document.getElementById("count").textContent =
+    active ? `${active} — ${items.length}개` : `전체 ${items.length}개`;
+
+  document.getElementById("list").innerHTML = items.map(p => `
+    <li class="item">
+      <a href="${esc(p.href)}">
+        <span>
+          <span class="name">${esc(p.name)}${p.pin ? '<i class="pin">먼저 볼 것</i>' : ""}</span>
+          <p class="desc">${esc(p.desc)}</p>
+          ${p.tags.length ? `<p class="meta">${p.tags.map(t => `<span>${esc(t)}</span>`).join("")}</p>` : ""}
+        </span>
+        <span class="when">${p.when}${p.stopped ? " · 멈춤" : ""}</span>
+      </a>
+    </li>
+  `).join("");
+}
+
+function ym(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+</script>
+
+</body>
+</html>
